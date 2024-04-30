@@ -1,11 +1,11 @@
 function generatePDF(filename = 'Компания', format = 'PNG', quality = 0.7) {
-    const pdf = new jsPDF('l', 'px', undefined, false);
+    const pdf = new jsPDF('l', 'px');
     
     $("canvas").each(function (index) {
 
         // Получаем контекст холста
         var canvas = $(this)[0];
-
+        const imgData = canvas.toDataURL('image/png');
         var scaleFactor = 1; // Фактор масштабирования
         var imgWidth = canvas.width * scaleFactor / 2;
         var imgHeight = canvas.height * scaleFactor / 2;
@@ -14,8 +14,7 @@ function generatePDF(filename = 'Компания', format = 'PNG', quality = 0.
         var xPos = (pdf.internal.pageSize.getWidth() - imgWidth) / 2;
         var yPos = (pdf.internal.pageSize.getHeight() - imgHeight) / 2;
 
-        // pdf.addImage($(this)[0], 'PNG', 10, 50);
-        pdf.addImage($(this)[0], 'PNG', xPos, yPos, imgWidth, imgHeight);
+        pdf.addImage(imgData, 'PNG', xPos, yPos, imgWidth, imgHeight);
         pdf.addPage();
     
     });

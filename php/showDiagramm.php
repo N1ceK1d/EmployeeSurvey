@@ -74,7 +74,7 @@ function getAverageResult($company_id, $company_name){?>
       $answersArray[] = $row['anser_text'];
     }
     ?>
-    <canvas id="myChart<?php echo $company_id ?>" style="max-width:1500px;height:500px"></canvas>
+    <canvas class='bg-white' id="myChart<?php echo $company_id ?>" style="max-width:1500px;height:500px;padding:10px"></canvas>
     <script src="../js/diagramm.js"></script>
     <script>
       console.log(<?php echo json_encode($myArray); ?>);
